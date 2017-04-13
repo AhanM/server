@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div(id="main", role="main")
+    header
+      div(class="wrapper", style="opacity:1; margin-top: 0px")
+        div(style="width:30%")
+          ul(style="list-style: none")
+          - var values = []
+          - repos.forEach(function(element) { values.push(element) }, this);
+            each val in values
+              li(style="list-style-type: none; margin-left:5%; text-align: left")
+                input(type="checkbox", style="margin-right: 6px")
+                | #{val}
+          button(class="btn") Submit
+    

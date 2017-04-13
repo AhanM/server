@@ -1,0 +1,62 @@
+doctype html
+html(lang="en")
+  head
+    title Showcase
+    link(rel='stylesheet', href='/css/style.css')
+    script(src="https://code.jquery.com/jquery-2.2.0.min.js")
+    script(src="/js/static.js")
+  body
+    block header
+      nav(role="nav", style="background-color: black")
+        div(class="nav-container")
+          div(class="nav-left")
+            a(href="/")
+              img(src="/images/cseslogo-300.png", alt="CSES Logo")
+
+          div(class="nav-right")
+            a(href="#about") About
+            a(href="projects") Projects
+            //- a(href="cselabs") CSE Labs
+            a(href="#events") Events
+            a(href="#team") Team
+            a(href="#contact") Contact
+
+        div(class="nav-right-hamburger")
+            div(class="toggle-1") 
+            div(class="toggle-2")
+            div(class="toggle-3")
+
+        div(class="nav-right-collapse")
+            a(href="#about") About
+            a(href="/projects") Projects
+            //- a(href="cselabs") CSE Labs
+            a(href="#events") Events
+            a(href="#team") Team
+            a(href="#contact") Contact
+            img(src="/images/cseslogo-300.png", alt="CSES Logo")
+        
+
+    block content
+
+    block footer
+      footer
+        div(class="footer-container")
+          div(class="col left")
+            h5 Related Links
+            a(href="/archives") Events Archives
+            a(class="subscribe-btn") Subscribe
+            a(href="https://www.facebook.com/groups/ucsdcses/", target="_blank") Facebook Group
+            br
+          
+          div(class="col right")
+            p UC San Diego
+            p 9500 Gilman Dr.
+            p La Jolla, CA 92093
+            br
+            a(href="mailto:csesucsd@gmail.com", style="word-wrap: break-word;") csesucsd@gmail.com
+          
+          div(class="footer-icons")
+            div(class="col left")
+                img(class="footer-cses-logo", src="/images/cseslogo-300.png", alt="CSES Logo")
+            div(class="col right")
+                img(class="footer-ucsd-logo", src="/images/ucsd-logo.png" alt="UCSD Logo")

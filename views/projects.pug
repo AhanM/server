@@ -1,0 +1,41 @@
+extends layout
+
+block header
+  nav(role="nav", style="background-color: black")
+    div(class="nav-container")
+      div(class="nav-left")
+        a(href="/")
+          img(src="/images/cseslogo-300.png", alt="CSES Logo")
+
+      div(class="nav-right")
+        a(href="../#about") About
+        a(href="/") Projects
+        //- a(href="cselabs") CSE Labs
+        a(href="../#events") Events
+        a(href="../#team") Team
+        a(href="../#contact") Contact
+
+    div(class="nav-right-hamburger")
+        div(class="toggle-1") 
+        div(class="toggle-2")
+        div(class="toggle-3")
+
+    div(class="nav-right-collapse")
+        a(href="../#about") About
+        a(href="/") Projects
+        //- a(href="cselabs") CSE Labs
+        a(href="../#events") Events
+        a(href="../#team") Team
+        a(href="../#contact") Contact
+        img(src="/images/cseslogo-300.png", alt="CSES Logo")
+
+block content
+  div(id="main", role="main")
+    header
+      div(class="wrapper", style="opacity:1; margin-top: 0px")
+        h1 CSES Showcase
+        h4 Connecting UC San Diego's CSE community
+        h4= text
+        form
+          a(class="header-btn share-btn", href="projects/redirect", 
+            style="border: 2px solid #edab18") Share
