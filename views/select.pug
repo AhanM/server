@@ -1,16 +1,29 @@
 extends layout
 
+block head
+  title Showcase
+  link(rel='stylesheet', href='/css/style.css')
+  link(rel='stylesheet', href='/css/select.css')
+  script(src="https://code.jquery.com/jquery-2.2.0.min.js")
+  script(src="/js/static.js")
+    
+
 block content
   div(id="main", role="main")
-    header
+    header(style="height: 800px; padding-top: 60px")
       div(class="wrapper", style="opacity:1; margin-top: 0px")
-        div(style="width:30%")
-          ul(style="list-style: none")
-          - var values = []
-          - repos.forEach(function(element) { values.push(element) }, this);
-            each val in values
-              li(style="list-style-type: none; margin-left:5%; text-align: left")
-                input(type="checkbox", style="margin-right: 6px")
-                | #{val}
-          button(class="btn") Submit
+        div(class="steps")
+          form(action="submit" method="post")
+            ul(id="sortable") 
+              h1() Repository Selection
+              - var values = []
+              - var n = 1
+              - repos.forEach(function(element) { values.push(element) }, this);
+                each val in values
+                  li(class="" style="list-style-type: none; text-align: left")
+                    input(id="label-" + n name=val type="checkbox")
+                    label(for="label-" + n) #{val}
+                    - n++
+            br
+            input(type="submit" class="btn" style="background-color: black;" value="Submit")
     

@@ -8,6 +8,8 @@ const path = require('path');
 const https = require('https');
 const url = require('url');
 const request = require('request');
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 
 const router  = express.Router();
 
@@ -161,6 +163,13 @@ router.get('/select', (req, res) => {
   } else {
     res.render('Session Timed out');
   }
+});
+
+// Define route for project showcase requests
+router.post('/submit', (req, res) => {
+  console.log(req.body);
+  // create Project request objects from selected repos
+  res.send(Object.keys(req.body));
 });
 
 module.exports = router;

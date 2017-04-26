@@ -34,8 +34,8 @@ app.use(session({
 }));
 
 // Register middleware
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(reqLog);
 app.use(compression({ threshold: 0 }));
 
