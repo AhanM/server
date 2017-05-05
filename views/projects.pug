@@ -39,3 +39,6 @@ block content
         form
           a(class="header-btn share-btn", href="projects/redirect", 
             style="border: 2px solid #edab18") Share
+        if numSubmitted
+          br
+          h5(style="border-color:d6e9c6; background-color:dff0d8; color:green") Thank you for submitting #{numSubmitted} projects.

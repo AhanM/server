@@ -18,12 +18,11 @@ block content
               h1() Repository Selection
               - var values = []
               - var n = 1
-              - repos.forEach(function(element) { values.push(element) }, this);
+              - repos.forEach(function(element) { values.push(element.name) }, this);
                 each val in values
                   li(class="" style="list-style-type: none; text-align: left")
                     input(id="label-" + n name=val type="checkbox")
                     label(for="label-" + n) #{val}
                     - n++
             br
-            input(type="submit" class="btn" style="background-color: black;" value="Submit")
-    
+            input(type="submit" class="btn" style="background-color: black;" value="Submit") 

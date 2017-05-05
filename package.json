@@ -20,6 +20,7 @@
   "homepage": "https://github.com/jsdavis/server#readme",
   "dependencies": {
     "angular": "^1.6.3",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "bunyan": "^1.8.8",
     "compression": "^1.6.2",
@@ -28,6 +29,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.2",
     "fbgraph": "^1.4.1",
+    "mongoose": "^4.9.7",
     "pug": "^2.0.0-beta11",
     "request": "^2.81.0",
     "strftime": "^0.10.0"
