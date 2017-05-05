@@ -3,12 +3,9 @@ require('dotenv').config();
 
 // Node modules
 const express = require('express');
-const session = require('express-session');
 const https = require('https');
 const url = require('url');
 const request = require('request');
-const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
 const mongoose = require('mongoose');
 
 const router  = express.Router();
@@ -54,10 +51,10 @@ router.get('/redirect', (req, res) => {
     state: GitHubConfig.state,
     allow_signup: false
   };
-  let responseString = '';
+  // const responseString = '';
 
-  // define behaavior for when the request returns
-  const callback = function(res, text) {
+  // define behaviour for when the request returns
+  const callback = function(res) {
     const url = 'https://github.com/login/oauth/authorize'
     + '?client_id=' + GitHubConfig.client_id
     + (GitHubConfig.scope ? '&scope=' + GitHubConfig.scope : '')
@@ -69,28 +66,29 @@ router.get('/redirect', (req, res) => {
     res.redirect(url);
   };
 
-  var req = https.request(options, (result) => {
+  const reqQuery = https.request(options, (result) => {
 
     // console.log('statusCode:', res.statusCode);
     // console.log('headers:', res.headers);
 
     result.on('data', (d) => {
       process.stdout.write(d);
-      responseString = d.toString();
+
+      // responseString = d.toString();
     });
 
     result.on('end', () => {
 
-      console.log('callback');
-      callback(res, responseString);
+      //console.log('callback');
+      callback(res); // instead of callback(res, responseString)
     });
   });
 
-  req.on('error', (e) => {
-    console.error(e);
+  reqQuery.on('error', (e) => {
+    throw e;
   });
 
-  req.end();
+  reqQuery.end();
 });
 
 router.get('/callback', (req, res) => {
@@ -131,14 +129,14 @@ router.get('/callback', (req, res) => {
 
         //console.log(response.statusCode);
         if (error)
-          console.error(error);
+          throw error;
         if (!error && response.statusCode == 200) {
           const username = JSON.parse(body).login;
           listRepos(username);
         }
       });
 
-      var listRepos = function(username) {
+      const listRepos = function(username) {
         const options = {
           url: 'https://api.github.com/users/'+ username + '/repos',
           headers: {
@@ -148,7 +146,7 @@ router.get('/callback', (req, res) => {
         };
         request.get(options, (error, response, body) => {
           if (error)
-            console.error(error);
+            throw error;
           if (!error && response.statusCode == 200) {
             const newbody = JSON.parse(body);
             const repos = newbody.map((obj) => {
@@ -172,7 +170,7 @@ router.get('/callback', (req, res) => {
   // makes a POST request for the access token
     request.post(options, (error, response, body) => {
       if (error) {
-        console.error(error);
+        throw error;
       }
       if (!error && response.statusCode == 200) {
 
@@ -199,6 +197,7 @@ router.get('/select', (req, res) => {
 
 // Define route for project showcase requests
 router.post('/submit', (req, res) => {
+
   // res.send("Testing.....");
   const selected = Array.from(Object.keys(req.body));
 
@@ -224,7 +223,7 @@ router.post('/submit', (req, res) => {
 
       // save to mongoDB
       projReq.save((err) => {
-        if (err) console.err(err);
+        if (err) throw err;
       });
       count += 1;
 

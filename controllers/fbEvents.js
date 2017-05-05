@@ -13,9 +13,9 @@ graph.setAppSecret(process.env.appSecret);
 // events using the graph api.
 router.get('/', (req, res) => {
 
-  const date = new Date('January 1, 2017');
+  //const date = new Date('January 1, 2017');
   const url = '/186014001799312/events';
-  
+
   // grab events from cses page
   graph.get(url, (err, events) => {
     if ( err ) {
@@ -30,15 +30,15 @@ router.get('/', (req, res) => {
     let eventCounter = 0;
     const eventArray = [0, 0, 0];
 
-    // For each event, we do some formatting of the json object, and attach 
+    // For each event, we do some formatting of the json object, and attach
     // the event's cover picture through an additional api call.
     events.forEach( (happening, index) => {
 
       // Event description and date formatting
       happening['description'] = happening['description'].split('\n')[0];
-      happening['hour_time'] = strftime('%l:%M %P', 
+      happening['hour_time'] = strftime('%l:%M %P',
         new Date(happening['start_time']));
-      happening['start_time'] = strftime('%B %d, %Y', 
+      happening['start_time'] = strftime('%B %d, %Y',
         new Date(happening['start_time']));
 
       // Set the index properly to the current happening
