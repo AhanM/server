@@ -1,0 +1,10 @@
+html
+    head
+      title lmao
+    body
+      ul
+        - arr = []
+        - docs.forEach(function(element) { arr.push(element.name) }, this);
+        each doc in arr
+          li #{{doc}}
+        

@@ -91,6 +91,7 @@ router.get('/redirect', (req, res) => {
   reqQuery.end();
 });
 
+// Define route for Github oAuth callback
 router.get('/callback', (req, res) => {
 
   // initalize session variable
@@ -236,5 +237,28 @@ router.post('/submit', (req, res) => {
   res.redirect('/projects');
 
 });
+
+router.get('/login', (req, res) => {
+  res.render('adminLogin.pug');
+});
+
+router.post('/login', (req, res) => {
+  if(req.body.username == 'admin' && req.body.password == 'password') 
+    res.redirect('/projects/panel');
+  else
+    res.send('error');
+});
+
+router.get('/panel', (req, res) => {
+  projRequest.find({}, function (err, docs) {
+    if( docs == null) {
+      res.render("panel.pug", []);
+    } else {
+      console.log(docs);
+      res.render("panel.pug", docs);
+    }
+  });
+  
+})
 
 module.exports = router;
