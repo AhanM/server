@@ -51,6 +51,7 @@ router.get('/redirect', (req, res) => {
     state: GitHubConfig.state,
     allow_signup: false
   };
+
   // const responseString = '';
 
   // define behaviour for when the request returns
@@ -243,22 +244,22 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  if(req.body.username == 'admin' && req.body.password == 'password') 
+  if (req.body.username == 'admin' && req.body.password == 'password') 
     res.redirect('/projects/panel');
   else
     res.send('error');
 });
 
 router.get('/panel', (req, res) => {
-  projRequest.find({}, function (err, docs) {
-    if( docs == null) {
-      res.render("panel.pug", []);
-    } else {
-      console.log(docs);
-      res.render("panel.pug", docs);
+  projRequest.find({}, (err, docs) => {
+    if ( docs == null) {
+      res.render('panel.pug', []);
+    }
+    else {
+      res.render('panel.pug', docs);
     }
   });
   
-})
+});
 
 module.exports = router;
