@@ -25,7 +25,7 @@ const GitHubConfig = {
 mongoose.Promise = require('bluebird');
 
 // connect to local MongoDB instance
-mongoose.connect('mongodb://127.0.0.1/test');
+mongoose.connect('mongodb://127.0.0.1/test', {useMongoClient: true});
 
 // Define the route for the project showcase
 router.get('/', (req, res) => {
