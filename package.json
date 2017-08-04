@@ -4,7 +4,7 @@
   "description": "CSES webserver",
   "main": "app.js",
   "scripts": {
-    "prestart": "mongod --fork --logpath /dev/null",
+    "prestart": "",
     "start": "NODE_ENV=dev node app.js | bunyan -o short",
     "test": "npm run lint && NODE_ENV=test mocha",
     "lint": "eslint --fix ./*"

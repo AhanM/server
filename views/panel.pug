@@ -1,10 +1,16 @@
 html
     head
-      title lmao
+      title Dashboard
+      link(rel='stylesheet', href='/css/panel.css')
+
     body
-      ul
-        - arr = []
-        - docs.forEach(function(element) { arr.push(element.name) }, this);
-        each doc in arr
-          li #{{doc}}
-        
+      div
+        ul
+          each doc in arr
+            li
+              a(href="https://github.com/" + doc)
+                img(src="http://placehold.it/150x150")
+                br 
+                br
+                p #{doc}
+          

@@ -240,7 +240,7 @@ router.post('/submit', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  res.render('adminLogin.pug');
+  res.render('adLogin.pug');
 });
 
 router.post('/login', (req, res) => {
@@ -252,11 +252,18 @@ router.post('/login', (req, res) => {
 
 router.get('/panel', (req, res) => {
   projRequest.find({}, (err, docs) => {
-    if ( docs == null) {
-      res.render('panel.pug', []);
+    if ( !docs ) {
+      res.render('panel.pug', {arr: []});
     }
     else {
-      res.render('panel.pug', docs);
+      const arr = [];
+      docs.forEach( (element) => {
+        arr.push(element.name);
+      }); 
+
+      // console.log(docs);
+      // console.log('-----');
+      res.render('panel.pug', {arr: arr});
     }
   });
   
