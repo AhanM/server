@@ -1,0 +1,19 @@
+extends layout
+
+block head
+  title adLogin
+  link(rel='stylesheet', href='/css/style.css')
+  link(rel='stylesheet', href='/css/adLogin.css')
+  script(src="https://code.jquery.com/jquery-2.2.0.min.js")
+  
+block content
+  div(class='Log-box')
+    form(action='login' method='post')
+      h2(class='log-Title') Login
+      ul
+        li Username:
+          input(name='username' type='text' class='in-box')
+        li Password:
+          input(name='password' type='password' class='in-box')
+        li
+          input(name='submit' type='submit' class='btn' value='Submit')
